@@ -14,6 +14,6 @@ public interface EmployeeTaxService {
 
 	public int saveEmployee(final Employee emp);
 	 
-	public List<EmployeeTaxDetails> calculateEmployeeTaxDetails(final String financialYear);
+	public List<EmployeeTaxDetails> calculateEmployeeTaxDetails();
 	
 }

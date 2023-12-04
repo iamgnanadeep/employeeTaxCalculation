@@ -49,9 +49,8 @@ public class EmployeeTaxController {
 	 * @return {ResponseEntity}
 	 */
 	@PostMapping("/employee")
-	public ResponseEntity<List<EmployeeTaxDetails>> employeeTaxCalculator(
-			final @RequestParam("financialYear") @Pattern(regexp = "\\d{4}") String financialYear) {
-		List<EmployeeTaxDetails> employeeTaxDetailsList = empTaxService.calculateEmployeeTaxDetails(financialYear);
+	public ResponseEntity<List<EmployeeTaxDetails>> employeeTaxCalculator() {
+		List<EmployeeTaxDetails> employeeTaxDetailsList = empTaxService.calculateEmployeeTaxDetails();
 		return ResponseEntity.ok(employeeTaxDetailsList);
 	}
 

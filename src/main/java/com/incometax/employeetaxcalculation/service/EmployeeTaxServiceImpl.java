@@ -1,5 +1,6 @@
 package com.incometax.employeetaxcalculation.service;
 
+import java.time.Year;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -35,17 +36,16 @@ public class EmployeeTaxServiceImpl implements EmployeeTaxService {
 
 	/**
 	 * Calculate Employee Tax Details
-	 * @param financialYear
 	 * @return employtaxDetailsList
 	 */
 	@Override
-	public List<EmployeeTaxDetails> calculateEmployeeTaxDetails(final String financialYear) {
+	public List<EmployeeTaxDetails> calculateEmployeeTaxDetails() {
 
 		final List<EmployeeTaxDetails> employtaxDetailsList = new ArrayList<EmployeeTaxDetails>();
-
-		final String nextFinancialYear = String.valueOf(Integer.parseInt(financialYear) + 1);
-		final Optional<List<Employee>> employee = repository.getEmployeeData(nextFinancialYear + "-04-01",
-				nextFinancialYear + "-03-31");
+		final int year=Year.now().getValue();
+		final String financialYear = String.valueOf(year - 1);
+		final Optional<List<Employee>> employee = repository.getEmployeeData(financialYear + "-04-01",
+				year + "-03-31");
 
 		if (employee.isPresent()) {
 			List<Employee> empList = employee.get();
